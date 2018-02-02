@@ -47,7 +47,7 @@ function draw(){
 
 
 function collectionLines(xy, N){
-    this.d=random(2);
+    this.d=random(.2,2);
     this.lines=[];
     this.N=N;
     //var xy=[300,300]//randomPosition();
