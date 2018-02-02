@@ -9,16 +9,18 @@ var randomMotion=false;
 
 
 function setup(){
-    createCanvas(600,600);
+    createCanvas(windowWidth-50,windowHeight-50);
     // set the frame rate 
     frameRate(60);
     time=10;
     //initLine();
     //noLoop();
 
-    collection=new collectionLines([150,200],30);
-    collection2=new collectionLines([400,300],30);
-    collection3=new collectionLines([500,100],50);
+    collection=new collectionLines([windowWidth-windowWidth/3,windowHeight/4],30);
+    collection2=new collectionLines([windowWidth-windowWidth/2,windowHeight-windowHeight/5],30);
+    collection3=new collectionLines([windowWidth/7,windowHeight/3],50);
+    collection4=new collectionLines([windowWidth/2,windowHeight/6],50);
+
 
 
 
@@ -36,6 +38,9 @@ function draw(){
 
     collection3.updateLines();
     collection3.drawLines();
+
+    collection4.updateLines();
+    collection4.drawLines();
 
 
 }
