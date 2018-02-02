@@ -5,7 +5,7 @@ var upL2=20;
 
 var collection;
 
-var randomMotion=false;
+var randomMotion=true;
 
 
 function setup(){
