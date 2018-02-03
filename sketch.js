@@ -3,7 +3,7 @@ var timeStep=10;
 var upL1=9;
 var upL2=20;
 
-var collection;
+var coll=[];
 
 var randomMotion=false;
 
@@ -16,35 +16,36 @@ function setup(){
     //initLine();
     //noLoop();
 
+
     collection=new collectionLines([windowWidth-windowWidth/3,windowHeight/4],30);
     collection2=new collectionLines([windowWidth-windowWidth/2,windowHeight-windowHeight/5],30);
     collection3=new collectionLines([windowWidth/7,windowHeight/3],50);
     collection4=new collectionLines([windowWidth/2,windowHeight/6],50);
 
+    coll.push(collection);
+    coll.push(collection2);
+    coll.push(collection3);
+    coll.push(collection4);
 
-
+    print(coll.length);
 
 
 }
 
 function draw(){ 
     angleMode(DEGREES);
-
-    collection.updateLines();
-    collection.drawLines();
-
-    collection2.updateLines();
-    collection2.drawLines();
-
-    collection3.updateLines();
-    collection3.drawLines();
-
-    collection4.updateLines();
-    collection4.drawLines();
+    var l= coll.length;
+    for (var i=0; i<l; i++){
+        coll[i].updateLines();
+        coll[i].drawLines();
+    }
 
 
 }
 
+function mouseClicked(){
+    coll.push(new collectionLines([mouseX, mouseY],30));
+}
 
 function collectionLines(xy, N){
     this.d=random(.2,2);
