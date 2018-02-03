@@ -49,6 +49,7 @@ function mouseClicked(){
 
 function touchStarted(){
     coll.push(new collectionLines([touchX, touchY],30));
+    return false;
 }
 
 function collectionLines(xy, N){
