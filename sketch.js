@@ -5,7 +5,7 @@ var upL2=20;
 
 var coll=[];
 
-var randomMotion=false;
+var randomMotion=false; //can set random spread
 
 
 function setup(){
@@ -16,62 +16,63 @@ function setup(){
     //initLine();
     //noLoop();
 
-
+    //create new collection of lines objects
     collection=new collectionLines([windowWidth-windowWidth/3,windowHeight/4],30);
     collection2=new collectionLines([windowWidth-windowWidth/2,windowHeight-windowHeight/5],30);
     collection3=new collectionLines([windowWidth/7,windowHeight/3],50);
     collection4=new collectionLines([windowWidth/2,windowHeight/6],50);
-
+    //push them into the list to keeep track
     coll.push(collection);
     coll.push(collection2);
     coll.push(collection3);
     coll.push(collection4);
-
-    print(coll.length);
-
-
 }
 
 function draw(){ 
+    //set the mode of agle to degrees (more intuitive)
     angleMode(DEGREES);
+    //number to keep track of the length of the array
     var l= coll.length;
+    //loop though all the collections of lines
     for (var i=0; i<l; i++){
         coll[i].updateLines();
         coll[i].drawLines();
     }
-
-
 }
 
+// add a new collection of lines when clicked
 function mouseClicked(){
     coll.push(new collectionLines([mouseX, mouseY],30));
 }
-
+// add a new collection of lines when touched (seems that this is not working well)
 function touchStarted(){
     coll.push(new collectionLines([touchX, touchY],30));
 }
 
+// create a class collectionLines, made of randomLine objects
 function collectionLines(xy, N){
-    this.d=random(.2,2);
-    this.lines=[];
-    this.N=N;
-    //var xy=[300,300]//randomPosition();
+    this.d=random(.2,2); //size of the circles
+    this.lines=[]; //lines array
+    this.N=N; //number of lines (passed in)
+    // loop through and create lines
     for (var i=0; i<N; i++){
         this.lines.push(new randomLine(xy,this.d));
     }
+    // add point to the line
     this.updateLines=function(){
         for (var i=0; i<this.N; i++){
             this.lines[i].addPoint();
         }
     }
+    // draw the new line
     this.drawLines=function(){
         for (var i=0; i<this.N; i++){
             this.lines[i].drawCurve();
         }
     }
-
 }
 
+//Class for the randomLine
 function randomLine(xy, d){
     this.x=[]; //empty x array
     this.x.push(xy[0]);
@@ -81,6 +82,7 @@ function randomLine(xy, d){
     var l=this.x.length;
     this.up=0;
 
+    // initialize the first 4 values to make it easier to plot (need 4 for the curve() )
     while (l<4){
         var l=this.x.length;
         this.x.push(d*sin(this.theta)+this.x[l-1]);
@@ -94,7 +96,7 @@ function randomLine(xy, d){
             this.up+=1;
         }
     }
-
+    // add points
     this.addPoint=function(){
         var l=this.x.length;
         this.x.push(d*sin(this.theta)+this.x[l-1]);
@@ -108,7 +110,7 @@ function randomLine(xy, d){
             this.up+=1;
         }
     }
-
+    // draw the curve (only draw last 4 points, since we do not draw over)
     this.drawCurve=function(){
         stroke(255, 102, 0);
         strokeWeight(1);
@@ -121,6 +123,8 @@ function randomPosition(){ //random start
     //we do not want to start at the very edges
     return [floor(random(50,width-50)),floor(random(50, height-50))];
 }
+
+// how to decide whether we want to change direction in the small wobble in the lines
 function noiseTheta(th, up){
     time+=timeStep;
     var change=false;
