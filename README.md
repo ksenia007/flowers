@@ -3,8 +3,8 @@
 This is a graphics of flowers formed from the lines, appearing on the screen.
 
 <p align="center">
-  <img src="assets/start.png" width="400"/>
-    <img src="assets/finish.png" width="400"/>
+  <img src="assets/start.png" width="500"/>
+    <img src="assets/finish.png" width="350"/>
 </p>
 <p align="center">
 
