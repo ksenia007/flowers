@@ -10,9 +10,7 @@ Some examples of the resulting graphics:
   <img src="assets/start.png" width="500"/>
     <img src="assets/finish.png" width="350"/>
 </p>
-<p align="center">
 
-</p>
 
 
 
